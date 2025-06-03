@@ -1,11 +1,15 @@
 import 'package:first_task_elevate/core/utils/routes_app.dart';
+import 'package:first_task_elevate/core/utils/service_locator.dart';
 import 'package:first_task_elevate/core/utils/theme_app.dart';
-import 'package:first_task_elevate/features/home/presentation/home_view.dart';
 import 'package:first_task_elevate/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
 void main() {
-  runApp(const MyApp());
+  setupLocator();
+  // Bloc.observer = 
+  runApp(
+    const MyApp(),
+  );
 }
 
 class MyApp extends StatelessWidget {
@@ -14,6 +18,7 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'First Task',
+      debugShowCheckedModeBanner: false,
       theme: ThemeApp.theme,
       initialRoute: SplashView.routeName,
       routes: RoutesApp.routeApp,
