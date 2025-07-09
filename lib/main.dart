@@ -1,12 +1,12 @@
 import 'package:first_task_elevate/core/utils/routes_app.dart';
-import 'package:first_task_elevate/core/utils/service_locator.dart';
+import 'package:first_task_elevate/core/config/di.dart';
 import 'package:first_task_elevate/core/utils/theme_app.dart';
 import 'package:first_task_elevate/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
-void main() {
-  setupLocator();
-  // Bloc.observer = 
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized();
+  await configureDependencies();
   runApp(
     const MyApp(),
   );

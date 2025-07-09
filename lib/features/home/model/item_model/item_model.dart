@@ -1,7 +1,8 @@
 import 'package:first_task_elevate/features/home/entities/item_card_entities.dart';
+import 'package:json_annotation/json_annotation.dart';
 
 import 'rating.dart';
-
+@JsonSerializable()
 class ItemModel extends ItemCardEntities {
   int? id;
   String? title;
