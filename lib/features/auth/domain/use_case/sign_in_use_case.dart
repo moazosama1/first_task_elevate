@@ -7,10 +7,11 @@ import 'package:first_task_elevate/features/auth/domain/repo/sign_in_repo.dart';
 import 'package:injectable/injectable.dart';
 
 @injectable
-class SignInUseCase extends UseCasePram<Either<SignInResponseModel, Failure>,
-    SignInRequestModel> {
+class SignInUseCase
+    extends UseCasePram<SignInResponseModel, SignInRequestModel> {
   final SignInRepoContract signInRepoContract;
   SignInUseCase({required this.signInRepoContract});
+
   @override
   Future<Either<SignInResponseModel, Failure>> call(pram) async {
     return await signInRepoContract.signIn(info: pram);
