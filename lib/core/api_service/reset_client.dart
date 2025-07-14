@@ -11,7 +11,7 @@ part 'reset_client.g.dart';
 @RestApi()
 abstract class RestClient {
   @factoryMethod
-  factory RestClient(Dio dio) = _RestClient;
+  factory RestClient(@Named("getProduct") Dio dio) = _RestClient;
 
   @GET(ApiUrls.endPoint)
   Future<List<ItemModel>> getAllProduct();

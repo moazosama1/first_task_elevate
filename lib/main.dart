@@ -4,7 +4,7 @@ import 'package:first_task_elevate/core/utils/theme_app.dart';
 import 'package:first_task_elevate/features/splash/presentation/view/splash_view.dart';
 import 'package:flutter/material.dart';
 
-void main() async{
+void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await configureDependencies();
   runApp(
@@ -21,7 +21,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeApp.theme,
       initialRoute: SplashView.routeName,
-      routes: RoutesApp.routeApp,
+      onGenerateRoute: RoutesApp.onGenerateRoute,
     );
   }
 }

@@ -1,6 +1,5 @@
 import 'package:dio/dio.dart';
 
-
 abstract class Failure {
   final String errorMessage;
 
@@ -33,7 +32,7 @@ class ServerFailure extends Failure {
   factory ServerFailure.fromResponse(int statusCode) {
     const statusMessages = {
       400: 'Bad Request',
-      401: 'Unauthorized',
+      401: 'email or password invalid',
       403: 'Forbidden',
       404: 'Not Found',
       500: 'Internal Server Error',
