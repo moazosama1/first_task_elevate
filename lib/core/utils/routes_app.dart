@@ -1,5 +1,6 @@
 import 'package:first_task_elevate/core/config/di.dart';
 import 'package:first_task_elevate/features/auth/domain/use_case/sign_in_use_case.dart';
+import 'package:first_task_elevate/features/auth/presentation/view/forget_password_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_in_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_up_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view_model/cubit/sign_in_cubit_cubit.dart';
@@ -40,6 +41,10 @@ abstract class RoutesApp {
       case "SignUpView":
         return MaterialPageRoute(
           builder: (context) => SignUpView(),
+        );
+      case "forgetPasswordView":
+        return MaterialPageRoute(
+          builder: (context) => ForgetPasswordView(),
         );
       default:
         return MaterialPageRoute(
