@@ -1,4 +1,5 @@
 import 'package:bloc/bloc.dart';
+import 'package:first_task_elevate/core/api_result/api_result.dart';
 import 'package:first_task_elevate/features/home/entities/item_card_entities.dart';
 import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_event.dart';
 import 'package:first_task_elevate/features/home/repos/home_repo.dart';
@@ -24,16 +25,15 @@ class FetchItemCubit extends Bloc<FetchItemEvent, FetchItemState> {
         baseStateFetchItems: BaseStateFetchItems(isLoading: true)));
 
     var data = await homeRepo.fetchFeatureItems();
-    data.fold(
-      (l) {
-        emit(state.copyWith(baseStateFetchItems: BaseStateFetchItems(data: l)));
-      },
-      (r) {
+    switch (data) {
+      case ApiResultSuccess<List<ItemCardEntities>>():
         emit(state.copyWith(
-            baseStateFetchItems:
-                BaseStateFetchItems(errorMessage: r.errorMessage)));
-      },
-    );
+            baseStateFetchItemsTwo: BaseStateFetchItems(data: data.data)));
+      case ApiResultError<List<ItemCardEntities>>():
+        emit(state.copyWith(
+            baseStateFetchItemsTwo: BaseStateFetchItems(
+                errorMessage: data.errorMessage.errorMessage)));
+    }
   }
 
   Future<void> _fetchItemsTwo(FetchItemTwo event, Emitter emit) async {
@@ -42,16 +42,14 @@ class FetchItemCubit extends Bloc<FetchItemEvent, FetchItemState> {
         baseStateFetchItemsTwo: BaseStateFetchItems(isLoading: true)));
 
     var data = await homeRepo.fetchFeatureItems();
-    data.fold(
-      (l) {
+    switch (data) {
+      case ApiResultSuccess<List<ItemCardEntities>>():
         emit(state.copyWith(
-            baseStateFetchItemsTwo: BaseStateFetchItems(data: l)));
-      },
-      (r) {
+            baseStateFetchItemsTwo: BaseStateFetchItems(data: data.data)));
+      case ApiResultError<List<ItemCardEntities>>():
         emit(state.copyWith(
-            baseStateFetchItemsTwo:
-                BaseStateFetchItems(errorMessage: r.errorMessage)));
-      },
-    );
+            baseStateFetchItemsTwo: BaseStateFetchItems(
+                errorMessage: data.errorMessage.errorMessage)));
+    }
   }
 }
