@@ -1,20 +1,35 @@
 part of 'fetch_item_cubit.dart';
 
-@immutable
-sealed class FetchItemState {}
+class FetchItemState {
+  final BaseStateFetchItems? baseStateFetchItems;
+  final BaseStateFetchItems? baseStateFetchItemsTwo;
 
-final class FetchItemInitial extends FetchItemState {}
+  FetchItemState({
+    this.baseStateFetchItems,
+    this.baseStateFetchItemsTwo,
+  });
 
-// ignore: must_be_immutable
-final class FetchItemSuccess extends FetchItemState {
-  List<ItemCardEntities> items;
-  FetchItemSuccess({required this.items});
+  FetchItemState copyWith({
+    BaseStateFetchItems? baseStateFetchItems,
+    BaseStateFetchItems? baseStateFetchItemsTwo,
+  }) {
+    return FetchItemState(
+      baseStateFetchItems: baseStateFetchItems ?? this.baseStateFetchItems,
+      baseStateFetchItemsTwo:
+          baseStateFetchItemsTwo ?? this.baseStateFetchItemsTwo,
+    );
+  }
 }
 
-final class FetchItemLoading extends FetchItemState {}
-
-final class FetchItemFailure extends FetchItemState {
+class BaseStateFetchItems {
+  final bool isLoading;
+  final List<ItemCardEntities> data;
   final String errorMessage;
 
-  FetchItemFailure({required this.errorMessage});
+  BaseStateFetchItems({
+    this.data = const [],
+    this.isLoading = false,
+    this.errorMessage = "",
+  });
 }
+

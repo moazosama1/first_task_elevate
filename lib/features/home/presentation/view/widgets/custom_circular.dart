@@ -10,7 +10,7 @@ class CustomCircular extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      padding: EdgeInsets.all(3),
+      padding: EdgeInsets.all(1),
       decoration: BoxDecoration(
         color: circularModel.bgColor,
         boxShadow: [

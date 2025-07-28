@@ -12,21 +12,23 @@ class BlocBuilderWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return BlocBuilder<FetchItemCubit, FetchItemState>(
       builder: (context, state) {
-        switch (state) {
-          case FetchItemInitial():
-            // TODO: Handle this case.
-            throw UnimplementedError();
-          case FetchItemSuccess():
-            return Expanded(
+        return Column(
+          spacing: 20,
+          children: [
+            SizedBox(
+              height: 300,
               child: CustomGridViewItem(
-                items: state.items,
+                baseStateFetchItems: state.baseStateFetchItems,
               ),
-            );
-          case FetchItemLoading():
-            return Center(child: CircularProgressIndicator());
-          case FetchItemFailure():
-            return Center(child: Text(state.errorMessage));
-        }
+            ),
+            SizedBox(
+              height: 300,
+              child: CustomGridViewItem(
+                baseStateFetchItems: state.baseStateFetchItemsTwo,
+              ),
+            ),
+          ],
+        );
       },
     );
   }

@@ -24,7 +24,7 @@ abstract class RoutesApp {
             return BlocProvider(
               create: (context) => FetchItemCubit(
                 homeRepo: getIt.get<HomeRepo>(),
-              )..fetchItems(),
+              )..getAllData(),
               child: HomeView(),
             );
           },
