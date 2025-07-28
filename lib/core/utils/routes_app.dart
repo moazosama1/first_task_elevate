@@ -5,6 +5,7 @@ import 'package:first_task_elevate/features/auth/presentation/view/sign_in_view.
 import 'package:first_task_elevate/features/auth/presentation/view/sign_up_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view_model/cubit/sign_in_cubit_cubit.dart';
 import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_cubit.dart';
+import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_event.dart';
 import 'package:first_task_elevate/features/home/presentation/view/home_view.dart';
 import 'package:first_task_elevate/features/home/repos/home_repo.dart';
 import 'package:first_task_elevate/features/splash/presentation/view/splash_view.dart';
@@ -24,7 +25,7 @@ abstract class RoutesApp {
             return BlocProvider(
               create: (context) => FetchItemCubit(
                 homeRepo: getIt.get<HomeRepo>(),
-              )..getAllData(),
+              )..add(FetchItemAll()),
               child: HomeView(),
             );
           },

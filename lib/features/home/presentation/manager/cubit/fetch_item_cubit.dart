@@ -1,24 +1,25 @@
-import 'dart:convert';
-import 'dart:developer';
-
 import 'package:bloc/bloc.dart';
-import 'package:first_task_elevate/core/base_state/base_state.dart';
 import 'package:first_task_elevate/features/home/entities/item_card_entities.dart';
+import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_event.dart';
 import 'package:first_task_elevate/features/home/repos/home_repo.dart';
 
 part 'fetch_item_state.dart';
 
-class FetchItemCubit extends Cubit<FetchItemState> {
-  FetchItemCubit({required this.homeRepo}) : super(FetchItemState());
+class FetchItemCubit extends Bloc<FetchItemEvent, FetchItemState> {
+  FetchItemCubit({required this.homeRepo}) : super(FetchItemState()) {
+    on<FetchItemOne>(_fetchItems);
+    on<FetchItemTwo>(_fetchItemsTwo);
+    on<FetchItemAll>(_getAllData);
+  }
   final HomeRepo homeRepo;
-  Future<void> getAllData() async {
+  Future<void> _getAllData(FetchItemAll event, Emitter emit) async {
     await Future.wait<void>([
-      fetchItems(),
-      fetchItemsTwo(),
+      _fetchItems(FetchItemOne(), emit),
+      _fetchItemsTwo(FetchItemTwo(), emit),
     ]);
   }
 
-  Future<void> fetchItems() async {
+  Future<void> _fetchItems(FetchItemOne event, Emitter emit) async {
     emit(state.copyWith(
         baseStateFetchItems: BaseStateFetchItems(isLoading: true)));
 
@@ -35,7 +36,7 @@ class FetchItemCubit extends Cubit<FetchItemState> {
     );
   }
 
-  Future<void> fetchItemsTwo() async {
+  Future<void> _fetchItemsTwo(FetchItemTwo event, Emitter emit) async {
     await Future.delayed(Duration(seconds: 5));
     emit(state.copyWith(
         baseStateFetchItemsTwo: BaseStateFetchItems(isLoading: true)));
@@ -50,7 +51,6 @@ class FetchItemCubit extends Cubit<FetchItemState> {
         emit(state.copyWith(
             baseStateFetchItemsTwo:
                 BaseStateFetchItems(errorMessage: r.errorMessage)));
-        log(r.errorMessage);
       },
     );
   }
