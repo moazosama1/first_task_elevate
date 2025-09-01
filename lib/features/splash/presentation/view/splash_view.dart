@@ -1,6 +1,5 @@
 import 'package:first_task_elevate/core/utils/assets.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_in_view.dart';
-import 'package:first_task_elevate/features/home/presentation/view/home_view.dart';
 import 'package:flutter/material.dart';
 
 class SplashView extends StatefulWidget {
