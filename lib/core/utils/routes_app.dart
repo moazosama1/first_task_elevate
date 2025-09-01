@@ -3,7 +3,7 @@ import 'package:first_task_elevate/features/auth/domain/use_case/sign_in_use_cas
 import 'package:first_task_elevate/features/auth/presentation/view/forget_password_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_in_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_up_view.dart';
-import 'package:first_task_elevate/features/auth/presentation/view_model/cubit/sign_in_cubit_cubit.dart';
+import 'package:first_task_elevate/features/auth/presentation/model_view_intent/cubit/sign_in_cubit_cubit.dart';
 import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_cubit.dart';
 import 'package:first_task_elevate/features/home/presentation/manager/cubit/fetch_item_event.dart';
 import 'package:first_task_elevate/features/home/presentation/view/home_view.dart';

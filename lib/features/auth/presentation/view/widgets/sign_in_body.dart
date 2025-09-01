@@ -2,7 +2,8 @@ import 'package:first_task_elevate/core/utils/custom_button.dart';
 import 'package:first_task_elevate/features/auth/api/model/sign_in_request/sign_in_request_model.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/sign_up_view.dart';
 import 'package:first_task_elevate/features/auth/presentation/view/widgets/custom_text_field.dart';
-import 'package:first_task_elevate/features/auth/presentation/view_model/cubit/sign_in_cubit_cubit.dart';
+import 'package:first_task_elevate/features/auth/presentation/model_view_intent/cubit/sign_in_cubit_cubit.dart';
+import 'package:first_task_elevate/features/auth/presentation/model_view_intent/cubit/sign_in_event.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -69,12 +70,13 @@ class _SignInBodyState extends State<SignInBody> {
             ),
             CustomMainButton(
               textButton: "Sign In",
-              onTap: () async {
-                await BlocProvider.of<SignInCubitCubit>(context).signIn(
+              onTap: () {
+                BlocProvider.of<SignInCubitCubit>(context)
+                    .doIntent(SignInRequestedEvent(
                   info: SignInRequestModel(
                       email: emailController.text,
                       password: passwordController.text),
-                );
+                ));
               },
             ),
           ],
