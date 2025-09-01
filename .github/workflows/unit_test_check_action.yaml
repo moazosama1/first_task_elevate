@@ -17,4 +17,4 @@ jobs:
       - name: Install packages
         run: flutter pub get
       - name: Run test
-        run: flutter test test
+        run: flutter test
