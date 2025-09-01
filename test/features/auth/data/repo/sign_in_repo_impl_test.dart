@@ -1,9 +1,8 @@
-import 'package:flutter_test/flutter_test.dart'; 
+import 'package:flutter_test/flutter_test.dart';
 
 void main() {
-	test(
-		'Should ',
-		() async {
-		},
-	);
-
+  test(
+    'Should ',
+    () async {},
+  );
+}
